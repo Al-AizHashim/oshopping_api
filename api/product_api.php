@@ -72,8 +72,11 @@ else if(isset($_GET)){
     if (isset($_GET['product_id'])){
         echo  json_encode (  $product_model->  getSingleProduct($_GET['product_id'])  ) ;
     }
-    if (isset($_GET['cat_id'])){
+    else if (isset($_GET['cat_id'])){
         echo  json_encode (  $product_model->  getProductByCategory($_GET['cat_id'])  ) ;
+    }
+    else if (isset($_GET['query'])){
+        echo  json_encode (  $product_model->  searchProduct($_GET['query'])  ) ;
     }
     else {
 

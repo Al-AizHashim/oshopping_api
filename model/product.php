@@ -67,6 +67,17 @@ class Product {
         return $rows  ;
     }
 
+    function searchProduct($query)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from product where product_name LIKE ?");
+        $query="%".$query."%" ;
+        $statement->execute([$query]);
+        $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows  ;
+    }
+
+
     function updateRow()
     {
         try {

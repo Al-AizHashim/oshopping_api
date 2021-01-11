@@ -96,50 +96,6 @@ else if(isset($_GET)){
 
 
 
-/*
-
-else if($_SERVER['REQUEST_METHOD']=="PUT"){
-    $_PUT= array();
-    parse_str(file_get_contents('php://input'), $_PUT);
-    $user_model->user_category = $_PUT['category'];
-    $user_model->user_region = $_PUT['region'];
-    $user_model->user_title = $_PUT['title'];
-    $user_model->user_details = $_PUT['details'];
-    $user_model->user_id = $_PUT['id'];
-
-
-    if ($user_model->updateRow()){
-        $feedback['code'] = 200;
-        $feedback['message'] = "row ".$_PUT['id']." updated successfully";
-
-    }else{
-        $feedback['code'] = 400;
-        $feedback['message'] = "failed to update row ".$_PUT['id'];
-
-    }
-    echo json_encode ($feedback);
-
-}
-else if($_SERVER['REQUEST_METHOD']=="DELETE"){
-    // $_DELETE=array();
-    //parse_str(file_get_contents('php://input'), $_DELETE);
-
-    $user_model->user_id = $_GET['id'];
-    if ($user_model->deleteRow()){
-        $feedback['code'] = 200;
-        $feedback['message'] = "the row  is deleted successfully";
-
-    }else{
-        $feedback['code'] = 400;
-        $feedback['message'] = "failed to delete row ";
-
-    }
-    echo json_encode ($feedback);
-
-}
-*/
-
-
 
 
 ?>

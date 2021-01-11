@@ -57,6 +57,16 @@ class Product {
         $row= array("Product"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
+
+    function getProductByCategory($cat_id)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from product where cat_id=?");
+        $statement->execute([$cat_id]);
+        $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows  ;
+    }
+
     function updateRow()
     {
         try {
@@ -68,6 +78,20 @@ class Product {
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image
             ,$this->product_quantity,$this->product_discount, $this->product_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+
+    }
+
+    function deleteProduct()
+    {
+        try {
+            $pdo= $this->database->connect();
+            $sql = "delete from product WHERE product_id=?";
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->product_id]);
             return true;
         } catch (PDOException $ex) {
             return false;

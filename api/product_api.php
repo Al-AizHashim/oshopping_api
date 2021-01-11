@@ -42,11 +42,27 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
 
     if ($product_model->updateRow()){
         $feedback['code'] = 200;
-        $feedback['message'] = "row ".$_PUT['product_id']." updated successfully";
+        $feedback['message'] = "product ".$_PUT['product_id']." updated successfully";
 
     }else{
         $feedback['code'] = 400;
-        $feedback['message'] = "failed to update row ".$_PUT['id'];
+        $feedback['message'] = "failed to update product ".$_PUT['product_name'];
+    }
+    echo json_encode ($feedback);
+
+}
+
+else if($_SERVER['REQUEST_METHOD']=="DELETE"){
+
+    $product_model->product_id = $_GET['product_id'];
+    if ($product_model->deleteProduct()){
+        $feedback['code'] = 200;
+        $feedback['message'] = "the product  is deleted successfully";
+
+    }else{
+        $feedback['code'] = 400;
+        $feedback['message'] = "failed to delete product ";
+
     }
     echo json_encode ($feedback);
 
@@ -55,6 +71,9 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
 else if(isset($_GET)){
     if (isset($_GET['product_id'])){
         echo  json_encode (  $product_model->  getSingleProduct($_GET['product_id'])  ) ;
+    }
+    if (isset($_GET['cat_id'])){
+        echo  json_encode (  $product_model->  getProductByCategory($_GET['cat_id'])  ) ;
     }
     else {
 

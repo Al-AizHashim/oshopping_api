@@ -13,17 +13,13 @@ class User {
     public $block;
 
     public $database;
-    public $timessstamp;
+
 
     function __construct()
     {
 
         $this->database = new DBConfig();
 
-    }
-    function setTime(){
-        //$this->timessstamp=date();
-        // $milliseconds = round(microtime(true) * 1000);
     }
 
 
@@ -42,23 +38,7 @@ class User {
     }
 
 
-    
 
-    function updateRow()
-    {
-        try {
-            $pdo= $this->database->connect();
-            $sql = "update user set category=?,region=?, title=? , info=? WHERE id=?";
-            $statement= $pdo->prepare($sql);
-            $statement->execute([$this->user_category, $this->user_region, $this->user_title, $this->user_details, $this->user_id]);
-
-            return true;
-        } catch (PDOException $ex) {
-            return false;
-        }
-
-    }
-//user_id	first_name	last_name	email	latitude	longitude	details	is_vendor	block	create_at
 
     function getUsers()
     {
@@ -82,35 +62,31 @@ class User {
     }
 
 
-
-
-
-
-
-    /*
-    function getRows()
-    {
-        $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select id,title from user");
-        $statement->execute();
-        $rows= $statement->fetchAll(PDO::FETCH_OBJ);
-        return $rows;
-    }
-    function getlastTenRows()
-    {
-        $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select id,title,date from user  ORDER BY date DESC  limit 10");
-        $statement->execute();
-        $rows= (object) array("lastuser"=>$statement->fetchAll(PDO::FETCH_ASSOC));
-        return $rows;
-    }
-
-    
-    function deleteRow()
+    function updateUser()
     {
         try {
             $pdo= $this->database->connect();
-            $sql = "delete from user WHERE id=?";
+            $sql = "update user set first_name=?,last_name=?,email=?,latitude=?,
+            longitude=?,details=?,is_vendor=?,block=? WHERE user_id=?";
+
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->first_name,$this->last_name,$this->user_email,
+            $this->latitude,$this->longitude,$this->user_details,$this->is_vendor
+            ,$this->block, $this->user_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+
+    }
+
+    //user_id	first_name	last_name	email	latitude	longitude	details	is_vendor	block	create_at
+
+    function deleteUser()
+    {
+        try {
+            $pdo= $this->database->connect();
+            $sql = "delete from user WHERE user_id=?";
             $statement= $pdo->prepare($sql);
             $statement->execute([$this->user_id]);
             return true;
@@ -119,41 +95,6 @@ class User {
         }
 
     }
-
-    function getRowsByCategoryAndRegion($category,$region)
-    {
-        $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select id,title,date from user where category=? and region=?");
-        $statement->execute([$category, $region]);
-        $rows= $statement->fetchAll(PDO::FETCH_OBJ);
-        return $rows;
-    }
-    function getRowsByCategory($category)
-    {
-        $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select id,title,date from user where category=?");
-        $statement->execute([$category]);
-        $rows= (object) array("userByCategory"=>$statement->fetchAll(PDO::FETCH_OBJ));
-        return $rows;
-    }
-    function getRowsByRegion($region)
-    {
-        $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select id,title,date from user where  region=?");
-        $statement->execute([$region]);
-        $rows= $statement->fetchAll(PDO::FETCH_OBJ);
-        return $rows;
-    }
-
-
-
-
-
-
-
-
-
-    */
 
 
     

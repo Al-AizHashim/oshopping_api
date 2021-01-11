@@ -31,12 +31,29 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
 
     }else{
         $feedback['code'] = 400;
-        $feedback['message'] = "failed to update row ".$_PUT['id'];
+        $feedback['message'] = "failed to update row ".$_PUT['report_id'];
 
     }
     echo json_encode ($feedback);
 
 }
+
+else if($_SERVER['REQUEST_METHOD']=="DELETE"){
+
+    $report_model->report_id = $_GET['report_id'];
+    if ($report_model->deleteReport()){
+        $feedback['code'] = 200;
+        $feedback['message'] = "the report  is deleted successfully";
+
+    }else{
+        $feedback['code'] = 400;
+        $feedback['message'] = "failed to delete report ";
+
+    }
+    echo json_encode ($feedback);
+
+}
+
 
 else if(isset($_GET)){
     if (isset($_GET['report_id'])){

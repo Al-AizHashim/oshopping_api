@@ -22,7 +22,7 @@ $category_model=new Category();
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
     $_PUT= array();
     parse_str(file_get_contents('php://input'), $_PUT);
-    $category_model->cat_name = $_PUT['category'];
+    $category_model->cat_name = $_PUT['cat_name'];
     $category_model->cat_id = $_PUT['cat_id'];
 
     if ($category_model->updateRow()){

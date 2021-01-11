@@ -55,6 +55,20 @@ class Report {
         }
 
     }
+
+    function deleteReport()
+    {
+        try {
+            $pdo= $this->database->connect();
+            $sql = "delete from report WHERE report_id=?";
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->report_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+
+    } 
    
 
 }

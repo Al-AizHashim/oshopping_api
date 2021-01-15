@@ -5,8 +5,8 @@ $user_model=new User();
 
 
  if(isset($_POST)&&!empty($_POST)){
-    $user_model->first_name = $_POST['firstName'];
-    $user_model->last_name = $_POST['lastName'];
+    $user_model->first_name = $_POST['first_name'];
+    $user_model->last_name = $_POST['last_name'];
     $user_model->user_email = $_POST['email'];
     $user_model->latitude = $_POST['latitude'];
     $user_model->longitude = $_POST['longitude'];

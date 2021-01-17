@@ -55,7 +55,7 @@ else if($_SERVER['REQUEST_METHOD']=="DELETE"){
 }
 
 
-else if($_SERVER['REQUEST_METHOD']=="DELETE"){
+else if($_SERVER['REQUEST_METHOD']=="GET"){
     if (isset($_GET['report_id'])){
         echo  json_encode (  $report_model->  getSingleReport($_GET['report_id'])  ) ;
     }

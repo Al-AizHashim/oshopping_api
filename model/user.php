@@ -60,7 +60,15 @@ class User {
         $row= array("userDetails"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
+    function getUserIdByEmail($email)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select user_id from user where email=?");
+        $statement->execute([$email]);
 
+        $row= array("userDetails"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        return $row  ;
+    }
 
     function updateUser()
     {

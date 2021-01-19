@@ -62,11 +62,6 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
     } 
 
 
-
-?>
-
-
-
 }
 
 
@@ -74,6 +69,9 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
 else if(isset($_GET)){
     if (isset($_GET['user_id'])){
         echo  json_encode (  $user_model->  getSingleUser($_GET['user_id'])  ) ;
+    }
+    else if (isset($_GET['email'])){
+        echo  json_encode (  $user_model->  getUserIdByEmail($_GET['email'])  ) ;
     }
     else {
 

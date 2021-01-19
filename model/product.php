@@ -40,7 +40,7 @@ class Product {
     function getProducts()
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from product ORDER BY product_date DESC  limit 5");
+        $statement= $pdo->prepare("select * from product ORDER BY product_date DESC  limit 10");
         $statement->execute();
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
 

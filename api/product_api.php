@@ -75,6 +75,9 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
     else if (isset($_GET['cat_id'])){
         echo  json_encode (  $product_model->  getProductByCategory($_GET['cat_id'])  ) ;
     }
+    else if (isset($_GET['vendor_id'])){
+        echo  json_encode (  $product_model->  getProductByVendor($_GET['vendor_id'])  ) ;
+    }
     else if (isset($_GET['query'])){
         echo  json_encode (  $product_model->  searchProduct($_GET['query'])  ) ;
     }

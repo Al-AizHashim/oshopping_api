@@ -12,7 +12,7 @@ class User {
     public $block;
     public $admin;
     public $image;
-    public$created_at;
+    public $created_at;
     public $database;
 
 
@@ -36,7 +36,17 @@ class User {
 
     }
 
-    function updateRow()
+  
+    function getUserIdByEmail($email)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select user_id from user where email=?");
+        $statement->execute([$email]);
+        $row= array("userDetails"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        return $row  ;
+    }
+
+    function updateUser()
     {
         try {
             $pdo= $this->database->connect();

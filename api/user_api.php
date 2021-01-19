@@ -5,12 +5,13 @@ $user_model=new User();
 
 
  if(isset($_POST)&&!empty($_POST)){
-    $user_model->first_name = $_POST['firstName'];
-    $user_model->last_name = $_POST['lastName'];
-    $user_model->user_email = $_POST['email'];
-    $user_model->latitude = $_POST['latitude'];
-    $user_model->longitude = $_POST['longitude'];
-    $user_model->user_details = $_POST['details'];
+    $user_model->first_name = $_POST['first_name'];
+    $user_model->last_name = $_POST['last_name'];
+    $user_model->email = $_POST['email'];
+    $user_model->phone_number = $_POST['phone_number'];
+    $user_model->details = $_POST['details'];
+    $user_model->address = $_POST['address'];
+    $user_model->image = $_POST['image'];
 
     if ($user_model->addUser()){
         $feedback['code'] = 200;
@@ -25,56 +26,41 @@ $user_model=new User();
 }
 
 
-/*
- public $user_id;
-    public $first_name;
-    public $last_name;
-    public $user_email;
-    public $latitude;
-    public $longitude;
-    public $user_image;
-    public $user_details;
-    public $is_vendor;
-    public $block;
-*/
-else if($_SERVER['REQUEST_METHOD']=="PUT"){
-    $_PUT= array();
-    parse_str(file_get_contents('php://input'), $_PUT);
-     $user_model->user_id = $_PUT['user_id'];
-     $user_model->first_name = $_PUT['first_name'];
-     $user_model->last_name= $_PUT['last_name'];
-     $user_model->user_email= $_PUT['email'];
-     $user_model->latitude= $_PUT['latitude'];
-     $user_model->longitude=$_PUT['longitude'];
-     $user_model->user_details= $_PUT['details'];
-     $user_model->is_vendor= $_PUT['is_vendor'];
-     $user_model->block= $_PUT['block'];
 
-    if ($user_model->updateUser()){
-        $feedback['code'] = 200;
-        $feedback['message'] = "user ".$_PUT['user_name']." updated successfully";
-
-    }else{
-        $feedback['code'] = 400;
-        $feedback['message'] = "failed to update user ".$_PUT['user_name'];
+else if(isset($_GET)){
+    if (isset($_GET['user_id'])){
+        echo  json_encode (  $user_model->  getUser($_GET['user_id'])  ) ;
     }
-    echo json_encode ($feedback);
+    else {
+      
+        echo json_encode ($user_model->getUsers());
+
+    }
 
 }
+else if($_SERVER['REQUEST_METHOD']=="PUT"){
+        $_PUT= array();
+        parse_str(file_get_contents('php://input'), $_PUT);
+         $product_model->user_id = $_PUT['user_id'];
+         $product_model->first_name = $_PUT['first_name'];
+         $product_model->last_name= $_PUT['last_name'];
+         $product_model->phone_number= $_PUT['phone_number'];
+         $product_model->address= $_PUT['address'];
+         $product_model->image=$_PUT['image'];
+         $product_model->details= $_PUT['details'];
+    
+        if ($product_model->updateRow()){
+            $feedback['code'] = 200;
+            $feedback['message'] = "row ".$_PUT['user_id']." updated successfully";
+    
+        }else{
+            $feedback['code'] = 400;
+            $feedback['message'] = "failed to update row ".$_PUT['User_id'];
+        }
+        echo json_encode ($feedback);
+    
+    } 
 
-else if($_SERVER['REQUEST_METHOD']=="DELETE"){
-
-    $user_model->user_id = $_GET['user_id'];
-    if ($user_model->deleteUser()){
-        $feedback['code'] = 200;
-        $feedback['message'] = "the user  is deleted successfully";
-
-    }else{
-        $feedback['code'] = 400;
-        $feedback['message'] = "failed to delete user ";
-
-    }
-    echo json_encode ($feedback);
 
 }
 
@@ -83,6 +69,9 @@ else if($_SERVER['REQUEST_METHOD']=="DELETE"){
 else if(isset($_GET)){
     if (isset($_GET['user_id'])){
         echo  json_encode (  $user_model->  getSingleUser($_GET['user_id'])  ) ;
+    }
+    else if (isset($_GET['email'])){
+        echo  json_encode (  $user_model->  getUserIdByEmail($_GET['email'])  ) ;
     }
     else {
 

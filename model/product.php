@@ -64,6 +64,14 @@ class Product {
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;
     }
+    function getProductByVendor($vendor_id)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from product where vendor_id=?");
+        $statement->execute([$vendor_id]);
+        $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows  ;
+    }
 
     function searchProduct($query)
     {

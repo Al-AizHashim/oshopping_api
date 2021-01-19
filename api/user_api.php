@@ -26,18 +26,6 @@ $user_model=new User();
 }
 
 
-
-else if(isset($_GET)){
-    if (isset($_GET['user_id'])){
-        echo  json_encode (  $user_model->  getUser($_GET['user_id'])  ) ;
-    }
-    else {
-      
-        echo json_encode ($user_model->getUsers());
-
-    }
-
-}
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
         $_PUT= array();
         parse_str(file_get_contents('php://input'), $_PUT);
@@ -62,13 +50,13 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
     } 
 
 
-}
+
 
 
 
 else if(isset($_GET)){
     if (isset($_GET['user_id'])){
-        echo  json_encode (  $user_model->  getSingleUser($_GET['user_id'])  ) ;
+        echo  json_encode (  $user_model->  getUser($_GET['user_id'])  ) ;
     }
     else if (isset($_GET['email'])){
         echo  json_encode (  $user_model->  getUserIdByEmail($_GET['email'])  ) ;

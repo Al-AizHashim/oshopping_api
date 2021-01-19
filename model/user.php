@@ -40,9 +40,9 @@ class User {
     function getUserIdByEmail($email)
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select user_id from user where email=?");
+        $statement= $pdo->prepare("select * from user where email=?");
         $statement->execute([$email]);
-        $row= array("userDetails"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("ListOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
 
@@ -73,7 +73,7 @@ class User {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("select * from user where user_id=?");
         $statement->execute([$id]);
-        $row= array("user"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("ListOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
 }

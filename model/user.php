@@ -46,7 +46,7 @@ class User {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("select user_id,first_name,last_name,email,latitude,longitude,details,create_at from user");
         $statement->execute();
-        $rows= (object) array("userprofile"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        $rows= (object) array("listOfUsers"=>$statement->fetchAll(PDO::FETCH_ASSOC));
 
 
         return $rows;
@@ -57,7 +57,7 @@ class User {
         $statement= $pdo->prepare("select * from user where user_id=?");
         $statement->execute([$id]);
 
-        $row= array("userDetails"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("listOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
     function getUserIdByEmail($email)
@@ -66,7 +66,7 @@ class User {
         $statement= $pdo->prepare("select user_id from user where email=?");
         $statement->execute([$email]);
 
-        $row= array("userDetails"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("listOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
 

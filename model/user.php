@@ -36,7 +36,7 @@ class User {
 
     }
 
-  
+
     function getUserIdByEmail($email)
     {
         $pdo= $this->database->connect();

@@ -42,7 +42,7 @@ class User {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("select * from user where email=?");
         $statement->execute([$email]);
-        $row= array("ListOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= (object) array("ListOfUsers"=> $statement->  fetchAll( PDO::FETCH_ASSOC)) ;
         return $row  ;
     }
 

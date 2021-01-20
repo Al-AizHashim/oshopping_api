@@ -14,6 +14,7 @@ $product_model=new Product();
      $product_model->product_image= $_POST['product_img'];
      $product_model->product_quantity= $_POST['product_quantity'];
      $product_model->product_discount= $_POST['product_discount'];
+     $product_model->color= $_POST['color'];
     if ($product_model->addProduct()){
         $feedback['code'] = 200;
         $feedback['message'] = "data inserted successfully";
@@ -39,6 +40,7 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
      $product_model->product_image= $_PUT['product_img'];
      $product_model->product_quantity= $_PUT['product_quantity'];
      $product_model->product_discount= $_PUT['product_discount'];
+     $product_model->color= $_PUT['color'];
 
     if ($product_model->updateRow()){
         $feedback['code'] = 200;
@@ -80,6 +82,9 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
     }
     else if (isset($_GET['query'])){
         echo  json_encode (  $product_model->  searchProduct($_GET['query'])  ) ;
+    }
+    else if (isset($_GET['color'])){
+        echo  json_encode (  $product_model->  searchProduct($_GET['color'])  ) ;
     }
     else {
 

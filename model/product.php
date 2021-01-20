@@ -12,6 +12,7 @@ class Product {
     public $product_date;
     public $product_quantity;
     public $product_discount;
+    public $color;
 
 
     function __construct()
@@ -25,10 +26,10 @@ class Product {
         try {
             $pdo= $this->database->connect();
             echo "in try";
-            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?)');
+            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?)');
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image
-            ,$this->product_quantity,$this->product_discount]);
+            ,$this->product_quantity,$this->product_discount,$this->color]);
             return true;
         } catch (PDOException $ex) {
             return false;
@@ -72,6 +73,14 @@ class Product {
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;
     }
+    function getProductByColor($color)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from product where color=?");
+        $statement->execute([$color]);
+        $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows  ;
+    }
 
     function searchProduct($query)
     {
@@ -90,11 +99,11 @@ class Product {
             $pdo= $this->database->connect();
             $sql = "update Product set product_name=?,yrial_price=?,dollar_price=?,vendor_id=?,
             cat_id=?,product_details=?,product_img=?,product_quantity=?,
-            product_discount=?, WHERE product_id=?";
+            product_discount=?,color=?, WHERE product_id=?";
             $statement= $pdo->prepare($sql);
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image
-            ,$this->product_quantity,$this->product_discount, $this->product_id]);
+            ,$this->product_quantity,$this->product_discount,$this->color, $this->product_id]);
             return true;
         } catch (PDOException $ex) {
             return false;

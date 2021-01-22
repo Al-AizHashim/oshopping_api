@@ -6,6 +6,17 @@ class cart
   public $user_id;
   public $product_id;
   public $cart_statuse;
+  public $product_name;
+  public $product_price_RY;
+  public $product_price_D;
+  public $vendor_id;
+  public $cat_id;
+  public $product_details;
+  public $product_image;
+  public $product_date;
+  public $product_quantity;
+  public $product_discount;
+  public $color;
   public $database;
 
 function __construct()
@@ -20,7 +31,7 @@ function getRows(){
 	$pdo=$this->database->connect();
     
     
-   $statement= $pdo->prepare("select * from cart");
+   $statement= $pdo->prepare("select * from cart ");
     
     $statement->execute();
     
@@ -40,6 +51,14 @@ function getRows(){
     return (object) array("getSingleCart"=>$statement->fetchAll(PDO::FETCH_OBJ));
     
     
+}
+function getSingleUserProductInCart($user_id)
+{
+    $pdo= $this->database->connect();
+    $statement= $pdo->prepare("select * from cart where fk_user_id=?");
+    $statement->execute([$user_id]);
+    $rows= array("ListOfUserProductsInCart"=> $statement->  fetchAll( PDO::FETCH_ASSOC)) ;
+    return $rows  ;
 }
     
     
@@ -81,9 +100,11 @@ function getRows(){
  {
    try{
      $pdo=$this->database->connect();
-     $qury='insert into cart values(null,?,?,?)';
+     $qury='insert into cart values(null,?,?,?,?,?,?,?,?,?,?,null,?,?,?)';
     $statement=  $pdo->prepare($qury);
-    $statement->execute([$this->user_id,$this->product_id,$this->cart_statuse]);
+    $statement->execute([$this->product_id,$this->user_id,$this->cart_statuse,$this->product_name,$this->product_price_RY,$this->product_price_D,
+    $this->vendor_id,$this->cat_id,$this->product_details,$this->product_image
+    ,$this->product_quantity,$this->product_discount,$this->color]);
   return true;
 }
     catch(PDOException $e){

@@ -53,7 +53,7 @@ class Product {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("select * from product where Product_id=?");
         $statement->execute([$id]);
-        $row= array("Product"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("ListOfProducts"=> $statement->  fetchAll( PDO::FETCH_ASSOC)) ;
         return $row  ;
     }
 
@@ -92,14 +92,13 @@ class Product {
         return $rows  ;
     }
 
-
     function updateRow()
     {
         try {
             $pdo= $this->database->connect();
-            $sql = "update Product set product_name=?,yrial_price=?,dollar_price=?,vendor_id=?,
+            $sql = "update product set product_name=?,yrial_price=?,dollar_price=?,vendor_id=?,
             cat_id=?,product_details=?,product_img=?,product_quantity=?,
-            product_discount=?,color=?, WHERE product_id=?";
+            product_discount=?,color=? WHERE product_id=?";
             $statement= $pdo->prepare($sql);
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image

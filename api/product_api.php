@@ -27,6 +27,7 @@ $product_model=new Product();
     echo json_encode ($feedback);
 }
 
+
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
     $_PUT= array();
     parse_str(file_get_contents('php://input'), $_PUT);

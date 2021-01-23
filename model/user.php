@@ -35,6 +35,7 @@ class User {
         }
     }
 
+
     function updateRow()
     {
         try {
@@ -48,6 +49,16 @@ class User {
         } catch (PDOException $ex) {
             return false;
         }
+
+
+    function getUserIdByEmail($email)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from user where email=?");
+        $statement->execute([$email]);
+        $row= (object) array("ListOfUsers"=> $statement->  fetchAll( PDO::FETCH_ASSOC)) ;
+        return $row  ;
+
     }
 
     function BlockUser()
@@ -77,7 +88,7 @@ class User {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("select * from user where user_id=?");
         $statement->execute([$id]);
-        $row= array("user"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("ListOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
 

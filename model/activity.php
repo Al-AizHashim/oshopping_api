@@ -19,8 +19,8 @@ class Activity{
         $pdo=$this->db_conn->connect();
         $statement = $pdo->prepare('SELECT * FROM activity WHERE fk_user_id=?');
         $statement->execute([$uId]);
-        $row= (object) array("ListOfActivities"=> $statement->  fetchAll( PDO::FETCH_OBJ)) ;
-        return $row  ;
+        $rows= (object) array("ListOfActivities"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows  ;
     }
     function getActivities(){
 

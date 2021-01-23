@@ -85,7 +85,7 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
         echo  json_encode (  $product_model->  searchProduct($_GET['query'])  ) ;
     }
     else if (isset($_GET['color'])){
-        echo  json_encode (  $product_model->  searchProduct($_GET['color'])  ) ;
+        echo  json_encode (  $product_model->  getProductByColor($_GET['color'])  ) ;
     }
     else {
 

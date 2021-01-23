@@ -25,7 +25,9 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
     if (isset($_GET['fk_user_id'])){
         echo  json_encode (  $activity_model->  getActivitiesUser($_GET['fk_user_id'])  ) ;
     }
+    else{
     echo  json_encode (  $activity_model->  getActivities()  );
+    }
 }
 
 ?>

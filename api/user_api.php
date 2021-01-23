@@ -2,8 +2,6 @@
 include('../model/user.php');
 $user_model=new User();
 
-
-
  if(isset($_POST)&&!empty($_POST)){
     $user_model->first_name = $_POST['first_name'];
     $user_model->last_name = $_POST['last_name'];
@@ -24,68 +22,51 @@ $user_model=new User();
     }
     echo json_encode ($feedback);
 }
-
-
-
-else if(isset($_GET)){
-    if (isset($_GET['user_id'])){
-        echo  json_encode (  $user_model->  getUser($_GET['user_id'])  ) ;
-    }
-    else {
-      
-        echo json_encode ($user_model->getUsers());
-
-    }
-
-}
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
-        $_PUT= array();
-        parse_str(file_get_contents('php://input'), $_PUT);
-         $product_model->user_id = $_PUT['user_id'];
-         $product_model->first_name = $_PUT['first_name'];
-         $product_model->last_name= $_PUT['last_name'];
-         $product_model->phone_number= $_PUT['phone_number'];
-         $product_model->address= $_PUT['address'];
-         $product_model->image=$_PUT['image'];
-         $product_model->details= $_PUT['details'];
-    
-        if ($product_model->updateRow()){
+    $_PUT= array();
+    parse_str(file_get_contents('php://input'), $_PUT);
+    if(isset($_PUT['block']) && $_PUT['admin_id'] && $_PUT['user_id'])
+    {
+        if($user_model->checkUserType($_PUT['admin_id'])){
+            $user_model->block = $_PUT['block'];
+            $user_model->user_id = $_PUT['user_id'];
+            if ($user_model->BlockUser()){
+                $feedback['code'] = 200;
+                $feedback['message'] = "user ".$_PUT['user_id']." blocked successfully";
+
+            }else{
+                $feedback['code'] = 400;
+                $feedback['message'] = "failed to block user ".$_PUT['User_id'];
+            }
+        }
+    }
+    else
+    {
+        $user_model->user_id = $_PUT['user_id'];
+        $user_model->first_name = $_PUT['first_name'];
+        $user_model->last_name= $_PUT['last_name'];
+        $user_model->phone_number= $_PUT['phone_number'];
+        $user_model->address= $_PUT['address'];
+        $user_model->image=$_PUT['image'];
+        $user_model->details= $_PUT['details'];
+
+        if ($user_model->updateRow()){
             $feedback['code'] = 200;
             $feedback['message'] = "row ".$_PUT['user_id']." updated successfully";
-    
+
         }else{
             $feedback['code'] = 400;
             $feedback['message'] = "failed to update row ".$_PUT['User_id'];
         }
-        echo json_encode ($feedback);
-    
+    }
+    echo json_encode ($feedback);
     } 
-
-
-}
-
-
-
 else if(isset($_GET)){
     if (isset($_GET['user_id'])){
-        echo  json_encode (  $user_model->  getSingleUser($_GET['user_id'])  ) ;
+        echo  json_encode (  $user_model->  getUser($_GET['user_id'])  ) ;
     }
-    else if (isset($_GET['email'])){
-        echo  json_encode (  $user_model->  getUserIdByEmail($_GET['email'])  ) ;
-    }
-    else {
-
+    else {      
         echo json_encode ($user_model->getUsers());
-
     }
-
-}// end of get
-
-
-
-
-
-
-
+}
 ?>
-

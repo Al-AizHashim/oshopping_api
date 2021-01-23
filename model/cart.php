@@ -80,7 +80,7 @@ function getSingleUserProductInCart($user_id)
         
     }
     
-   public function delete()
+   public function deleteCart()
     {
          try{
              

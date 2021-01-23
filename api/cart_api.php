@@ -54,8 +54,8 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
       echo json_encode($feedback);
     }
 else if($_SERVER['REQUEST_METHOD']=="DELETE"){
-    $cart_model->user_id=$_GET['user_id'];
-    if($cart_model->delete()){
+    $cart_model->cart_id=$_GET['cart_id'];
+    if($cart_model->deleteCart()){
         $feedback['code'] =200;
         $feedback['message']="data deleted successfull";
       } else{

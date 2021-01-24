@@ -58,14 +58,14 @@ class Product {
         return $rows;
     }
 
-  function getProductById($id)
+   function getProductById($id)
     {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
         product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
-        product.product_details,product.product_img,product.product_date,product.product_quantity
+        product.product_details,product.product_img,product.product_date,product.product_quantity,
         product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating_id) as number_of_ratings,
-        product.product_color
+        product.color
         FROM rating
         INNER JOIN product
           ON rating.product_id = product.product_id
@@ -74,6 +74,7 @@ class Product {
         $row= array("Product"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
+    
 
     function getProductByCategory($cat_id)
     {

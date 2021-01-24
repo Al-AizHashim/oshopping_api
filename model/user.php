@@ -50,7 +50,7 @@ class User {
             return false;
         }
 
-
+    }
     function getUserIdByEmail($email)
     {
         $pdo= $this->database->connect();
@@ -88,7 +88,7 @@ class User {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("select * from user where user_id=?");
         $statement->execute([$id]);
-        $row= array("ListOfUsers"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= array("user"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
 

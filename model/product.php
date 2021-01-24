@@ -58,7 +58,10 @@ class Product {
         return $rows;
     }
 
+
    function getProductById($id)
+
+
     {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
@@ -70,8 +73,9 @@ class Product {
         INNER JOIN product
           ON rating.product_id = product.product_id
           AND product.product_id = ?");
+
         $statement->execute([$id]);
-        $row= array("Product"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= (object) array("ListOfProducts"=> $statement->  fetchAll( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
     

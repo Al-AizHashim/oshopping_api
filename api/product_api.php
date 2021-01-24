@@ -73,7 +73,7 @@ else if($_SERVER['REQUEST_METHOD']=="DELETE"){
 
 else if($_SERVER['REQUEST_METHOD']=="GET"){
     if (isset($_GET['product_id'])){
-        echo  json_encode (  $product_model->  getSingleProduct($_GET['product_id'])  ) ;
+        echo  json_encode (  $product_model->  getProductById($_GET['product_id'])  ) ;
     }
     else if (isset($_GET['cat_id'])){
         echo  json_encode (  $product_model->  getProductByCategory($_GET['cat_id'])  ) ;

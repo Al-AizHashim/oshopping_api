@@ -58,20 +58,37 @@ class Product {
         return $rows;
     }
 
+/*
+product_id: "20",
+product_name: "new sofa",
+yrial_price: "62000",
+dollar_price: "100",
+vendor_id: "1",
+cat_id: "2",
+product_details: "made in Yemen",
+product_img: "uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:",
+product_date: "2021-01-22 11:32:48",
+product_quantity: "1",
+product_discount: "0",
+rating_average: "4.0",
+number_of_ratings: "1",
+color: "Grey"
+*/
+
   function getProductById($id)
     {
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
         product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
-        product.product_details,product.product_img,product.product_date,product.product_quantity
-        product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating_id) as number_of_ratings,
-        product.product_color
-        FROM rating
-        INNER JOIN product
-          ON rating.product_id = product.product_id
-          AND product.product_id = ?");
+        product.product_details,product.product_img,product.product_date,product.product_quantity,
+        product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating.rating_id) as number_of_ratings,
+        product.color 
+        FROM product
+        LEFT OUTER JOIN rating
+        ON product.product_id = rating.product_id
+          AND product.product_id=?");
         $statement->execute([$id]);
-        $row= array("Product"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
+        $row= (object) array("ListOfProducts"=> $statement->  fetchAll( PDO::FETCH_OBJ)) ;
         return $row  ;
     }
 

@@ -31,6 +31,28 @@ $product_model=new Product();
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
     $_PUT= array();
     parse_str(file_get_contents('php://input'), $_PUT);
+    if(isset($_PUT['hide']) && $_PUT['product_id'] && $_PUT['user_id'])
+    {
+    if($product_model->checkUserType($_PUT['user_id'])){
+        $product_model->hide = $_PUT['hide'];
+        $product_model->product_id = $_PUT['product_id'];
+        if ($product_model->hideProduct()){
+            $feedback['code'] = 200;
+            $feedback['message'] = "product ".$_PUT['product_id']." hided successfully";
+        }else{
+            $feedback['code'] = 400;
+            $feedback['message'] = "failed to hide user ".$_PUT['product_id'];
+        }
+        
+    }else{
+        $feedback['code'] = 400;
+        $feedback['message'] = "failed user is not admin";
+    }
+    echo json_encode ($feedback);
+    }
+    else{
+    $_PUT= array();
+    parse_str(file_get_contents('php://input'), $_PUT);
      $product_model->product_id = $_PUT['product_id'];
      $product_model->product_name = $_PUT['product_name'];
      $product_model->product_price_RY= $_PUT['yrial_price'];
@@ -52,7 +74,7 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
         $feedback['message'] = "failed to update product ".$_PUT['product_name'];
     }
     echo json_encode ($feedback);
-
+    }
 }
 
 else if($_SERVER['REQUEST_METHOD']=="DELETE"){
@@ -87,6 +109,13 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
     else if (isset($_GET['color'])){
         echo  json_encode (  $product_model->  getProductByColor($_GET['color'])  ) ;
     }
+    else if (isset($_GET['user_id'])){
+        if($product_model->checkUserType($_GET['user_id'])){
+            echo  json_encode (  $product_model->  getProductsAdmin() ) ;
+        }
+        else
+        echo json_encode ($product_model->getProducts());
+        }
     else {
 
         echo json_encode ($product_model->getProducts());

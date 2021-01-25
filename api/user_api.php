@@ -40,6 +40,10 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
                 $feedback['message'] = "failed to block user ".$_PUT['User_id'];
             }
         }
+     else{
+            $feedback['code'] = 400;
+            $feedback['message'] = "user is not admin".$_PUT['User_id'];
+        }
     }
     else
     {

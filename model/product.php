@@ -13,7 +13,7 @@ class Product {
     public $product_quantity;
     public $product_discount;
     public $color;
-
+    public $hide;
 
     function __construct()
     {
@@ -38,47 +38,78 @@ class Product {
     }
 
 
-      function getProducts()
-    {
+    function getProducts()
+    {   
         $pdo= $this->database->connect();
         $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
         product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
         product.product_details,product.product_img,product.product_date,product.product_quantity,
         product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating.rating_id) as number_of_ratings,
-        product.color 
+        product.color,product.hide
         FROM product
         LEFT OUTER JOIN rating
-          ON product.product_id = rating.product_id
-          GROUP BY product.product_id
-          ORDER BY product.product_date 
-          DESC  limit 10
+        ON product.product_id = rating.product_id
+        WHERE product.hide=0
+        GROUP BY product.product_id,product.product_name,
+        product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
+        product.product_details,product.product_img,product.product_date,product.product_quantity,
+        product.product_discount,product.color,product.hide
+        ORDER BY product.product_date DESC ");
+        $statement->execute();
+        $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows;
+    }
+
+     function getProductsAdmin()
+    {   
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
+        product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
+        product.product_details,product.product_img,product.product_date,product.product_quantity,
+        product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating.rating_id) as number_of_ratings,
+        product.color,product.hide
+        FROM product
+        LEFT OUTER JOIN rating
+        ON product.product_id = rating.product_id
+        GROUP BY product.product_id
+        ORDER BY product.product_date 
+        DESC  limit 10
           ");
         $statement->execute();
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;
     }
 
-
-   function getProductById($id)
-
-
-    {
-        $pdo= $this->database->connect();
-        $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
-        product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
-        product.product_details,product.product_img,product.product_date,product.product_quantity,
-        product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating_id) as number_of_ratings,
-        product.color
-        FROM rating
-        INNER JOIN product
-          ON rating.product_id = product.product_id
-          AND product.product_id = ?");
-
-        $statement->execute([$id]);
-        $row= (object) array("ListOfProducts"=> $statement->  fetchAll( PDO::FETCH_OBJ)) ;
-        return $row  ;
-    }
-    
+    function getProductById($id)
+   {
+       $pdo= $this->database->connect();
+       $statement= $pdo->prepare("SELECT product.product_id,product.product_name,
+       product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
+       product.product_details,product.product_img,product.product_date,product.product_quantity,
+       product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) AS rating_average,COUNT(rating_id)
+       AS number_of_ratings,
+       product.color
+       FROM rating
+       RIGHT JOIN product
+       ON rating.product_id = product.product_id
+       WHERE product.product_id = ?
+       GROUP BY product.product_id,product.product_name,
+       product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
+       product.product_details,product.product_img,product.product_date,product.product_quantity,
+       product.product_discount,product.color");
+       $statement->execute([$id]);
+       $row1= $statement-> fetchAll(PDO::FETCH_ASSOC);
+       
+       $statement2= $pdo->prepare("SELECT COUNT(product_report_details.product_r_d_id) AS number_of_reports
+       FROM product_report_details
+       RIGHT JOIN product
+       ON product_report_details.product_id = product.product_id
+       WHERE product.product_id = ?");
+       $statement2->execute([$id]);
+       $row2=$statement2-> fetchAll(PDO::FETCH_ASSOC);
+       $result = array_merge($row1, $row2);
+       return (object)array("ListOfProducts"=>$result)  ;
+   }
 
     function getProductByCategory($cat_id)
     {
@@ -133,6 +164,30 @@ class Product {
 
     }
 
+     function hideProduct(){
+        try {
+            $pdo= $this->database->connect();
+            $sql = "update product set hide=? WHERE product_id=?";
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->hide,$this->product_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+    
+    function checkUserType($id)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select admin from user where user_id=?");
+        $statement->execute([$id]);
+        $row=$statement->fetch(PDO::FETCH_OBJ);
+        if ($row->admin)
+            return true ;
+        else
+            return false;
+    }
+    
     function deleteProduct()
     {
         try {

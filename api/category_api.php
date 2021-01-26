@@ -6,6 +6,7 @@ $category_model=new Category();
 
  if(isset($_POST)&&!empty($_POST)){
     $category_model->cat_name = $_POST['cat_name'];
+    $category_model->category_image = $_POST['category_image'];
 
     if ($category_model->addCategory()){
         $feedback['code'] = 200;
@@ -23,6 +24,7 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
     $_PUT= array();
     parse_str(file_get_contents('php://input'), $_PUT);
     $category_model->cat_name = $_PUT['cat_name'];
+    $category_model->category_image = $_PUT['category_image'];
     $category_model->cat_id = $_PUT['cat_id'];
 
     if ($category_model->updateRow()){

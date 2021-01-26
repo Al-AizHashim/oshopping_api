@@ -3,6 +3,7 @@ include('../db_config.php');
 class Category {
     public $cat_id;
     public $cat_name;
+    public $category_image;
  
  
     function __construct()
@@ -15,8 +16,8 @@ class Category {
 
         try {
             $pdo= $this->database->connect();
-            $statement= $pdo->prepare('insert into category values(null,?)');
-            $statement->execute([  $this->cat_name]);
+            $statement= $pdo->prepare('insert into category values(null,?,?)');
+            $statement->execute([  $this->cat_name,$this->category_image]);
             return true;
         } catch (PDOException $ex) {
             return false;
@@ -48,9 +49,9 @@ class Category {
     {
         try {
             $pdo= $this->database->connect();
-            $sql = "update category set cat_name=? WHERE cat_id=?";
+            $sql = "update category set cat_name=?, category_image=? WHERE cat_id=?";
             $statement= $pdo->prepare($sql);
-            $statement->execute([$this->cat_name, $this->cat_id]);
+            $statement->execute([$this->cat_name, $this->category_image, $this->cat_id]);
 
             return true;
         } catch (PDOException $ex) {

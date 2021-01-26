@@ -14,14 +14,21 @@ class Activity{
         $this->db_conn = new DBConfig();
     }
 
+
     function getActivitiesUser($uId){
 
         $pdo=$this->db_conn->connect();
-        $statement = $pdo->prepare('SELECT * FROM activity WHERE fk_user_id=?');
+        $statement = $pdo->prepare("SELECT product.product_id,product.product_name,
+        product.yrial_price,product.dollar_price,activity.quantity,activity.total_price,activity.activity_type
+        FROM activity
+        INNER JOIN product
+          ON activity.fk_product_id = product.product_id
+          AND activity.fk_user_id=?");
         $statement->execute([$uId]);
         $rows= (object) array("ListOfActivities"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;
     }
+    
     function getActivities(){
 
         $pdo=$this->db_conn->connect();
@@ -49,6 +56,7 @@ class Activity{
         }
 
     }
+
 }
 
 

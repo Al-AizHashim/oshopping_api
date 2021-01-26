@@ -25,8 +25,7 @@ class Product {
 
         try {
             $pdo= $this->database->connect();
-            echo "in try";
-            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?)');
+            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?,null)');
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image
             ,$this->product_quantity,$this->product_discount,$this->color]);
@@ -45,8 +44,9 @@ class Product {
         product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
         product.product_details,product.product_img,product.product_date,product.product_quantity,
         product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating.rating_id) as number_of_ratings,
-        product.color,product.hide
+        product.color,product.hide,user.first_name,user.last_name
         FROM product
+        INNER JOIN user ON  product.vendor_id =user.user_id
         LEFT OUTER JOIN rating
         ON product.product_id = rating.product_id
         WHERE product.hide=0
@@ -88,10 +88,11 @@ class Product {
        product.product_details,product.product_img,product.product_date,product.product_quantity,
        product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) AS rating_average,COUNT(rating_id)
        AS number_of_ratings,
-       product.color
+       product.color,user.first_name,user.last_name
        FROM rating
        RIGHT JOIN product
        ON rating.product_id = product.product_id
+       INNER JOIN user ON  product.vendor_id =user.user_id
        WHERE product.product_id = ?
        GROUP BY product.product_id,product.product_name,
        product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,

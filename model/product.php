@@ -44,7 +44,7 @@ class Product {
         product.yrial_price,product.dollar_price,product.vendor_id,product.cat_id,
         product.product_details,product.product_img,product.product_date,product.product_quantity,
         product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) as rating_average,COUNT(rating.rating_id) as number_of_ratings,
-        product.color,product.hide,user.first_name,user.last_name
+        product.color,product.hide,user.first_name,user.last_name, user.firebase_user_id, user.firebase_user_name
         FROM product
         INNER JOIN user ON  product.vendor_id =user.user_id
         LEFT OUTER JOIN rating
@@ -88,7 +88,7 @@ class Product {
        product.product_details,product.product_img,product.product_date,product.product_quantity,
        product.product_discount,IFNULL(ROUND(AVG(rating.rating),1),0) AS rating_average,COUNT(rating_id)
        AS number_of_ratings,
-       product.color,user.first_name,user.last_name
+       product.color,user.first_name,user.last_name,  user.firebase_user_id, user.firebase_user_name
        FROM rating
        RIGHT JOIN product
        ON rating.product_id = product.product_id

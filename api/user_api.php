@@ -10,6 +10,8 @@ $user_model=new User();
     $user_model->details = $_POST['details'];
     $user_model->address = $_POST['address'];
     $user_model->image = $_POST['image'];
+    $user_model->firebase_user_id = $_POST['firebase_user_id'];
+    $user_model->firebase_user_name = $_POST['firebase_user_name'];
 
     if ($user_model->addUser()){
         $feedback['code'] = 200;

@@ -13,6 +13,8 @@ class User {
     public $admin;
     public $image;
     public$created_at;
+    public $firebase_user_id;
+    public$firebase_user_name;
     public $database;
 
     function __construct()
@@ -26,9 +28,9 @@ class User {
         try {
             $pdo= $this->database->connect();
             $statement= $pdo->prepare("INSERT INTO `user`( `first_name`, `last_name`, `email`, `phone_number`,
-             `details`, `address`,`image`) VALUES (?,?,?,?,?,?,?)");
+             `details`, `address`,`image`,'firebase_user_id','firebase_user_name') VALUES (?,?,?,?,?,?,?,?,?)");
             $statement->execute([  $this->first_name,$this->last_name,$this->email, $this->phone_number,$this->details,
-            $this->address,$this->image]);
+            $this->address,$this->image,$this->firebase_user_id, $this->firebase_user_name]);
             return true;
         } catch (PDOException $ex) {
             return false;

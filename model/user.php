@@ -16,6 +16,7 @@ class User {
     public $firebase_user_id;
     public$firebase_user_name;
     public $database;
+    public $checked;
 
     function __construct()
     {
@@ -76,10 +77,22 @@ class User {
         }
     }
 
+    function checkUserReports(){
+        try {
+            $pdo= $this->database->connect();
+            $sql = "update report_details set checked=? WHERE against=?";
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->checked,$this->user_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+
     function getUsers()
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from user");
+        $statement= $pdo->prepare("select * from user WHERE block != 1");
         $statement->execute();
         $rows= (object) array("ListOfUsers"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;
@@ -92,6 +105,15 @@ class User {
         $statement->execute([$id]);
         $row= array("user"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
+    }
+
+    function getUsersByBlock($block)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from user where block=?");
+        $statement->execute([$block]);
+        $rows= (object) array("ListOfUsers"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows;
     }
 
     function checkUserType($id)
@@ -108,9 +130,4 @@ class User {
 
 }
 
-
 ?>
-
-
-
-

@@ -25,8 +25,16 @@ else if(isset($_GET)){
     if (isset($_GET['against'])){
         echo  json_encode (  $report_details_model->getReportDetails($_GET['against'])  ) ;
     }
+    else if (isset($_GET['block'] )) {
+        if(isset($_GET['checked'])){
+            $report_details_model->block=$_GET['block'];
+            $report_details_model->checked=$_GET['checked'];
+        echo json_encode ($report_details_model->getReportsDetails());}
+        else  echo json_encode ("there is no response for your request");
+    }
     else {
-        echo json_encode ($report_details_model->getReportsDetails());
+        echo json_encode ("there is no response for your request");
+
     }
 }
 

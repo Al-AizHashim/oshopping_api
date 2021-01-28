@@ -14,6 +14,8 @@ class Product {
     public $product_discount;
     public $color;
     public $hide;
+    public $checked;
+
 
     function __construct()
     {
@@ -147,6 +149,18 @@ class Product {
         return $rows  ;
     }
 
+    function hideProduct(){
+        try {
+            $pdo= $this->database->connect();
+            $sql = "update product set hide=? WHERE product_id=?";
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->hide,$this->product_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+
+    }
     function updateRow()
     {
         try {
@@ -165,18 +179,19 @@ class Product {
 
     }
 
-     function hideProduct(){
+    function checkProductReports(){
         try {
             $pdo= $this->database->connect();
-            $sql = "update product set hide=? WHERE product_id=?";
+            $sql = "update product_report_details set checked=? WHERE product_id=?";
             $statement= $pdo->prepare($sql);
-            $statement->execute([$this->hide,$this->product_id]);
+            $statement->execute([$this->checked,$this->product_id]);
             return true;
         } catch (PDOException $ex) {
             return false;
         }
     }
-    
+
+
     function checkUserType($id)
     {
         $pdo= $this->database->connect();

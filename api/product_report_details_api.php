@@ -20,13 +20,20 @@ $product_report_details_model=new Product_report_details();
 }
 
 
-
 else if(isset($_GET)){
     if (isset($_GET['product_id'])){
         echo  json_encode (  $product_report_details_model->getProductReportDetails($_GET['product_id'])  ) ;
     }
+    else if (isset($_GET['hide'] )) {
+        if(isset($_GET['checked'])){
+            $product_report_details_model->hide=$_GET['hide'];
+            $product_report_details_model->checked=$_GET['checked'];
+        echo json_encode ($product_report_details_model->getProductReportsDetails());}
+        else  echo json_encode ("there is no response for your request");
+    }
     else {
-        echo json_encode ($product_report_details_model->getProductReportsDetails());
+        // echo json_encode ($product_report_details_model->getProductReportsDetails());
+
     }
 }
 

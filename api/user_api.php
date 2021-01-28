@@ -26,21 +26,29 @@ $user_model=new User();
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
     $_PUT= array();
     parse_str(file_get_contents('php://input'), $_PUT);
-    if(isset($_PUT['block']) && $_PUT['admin_id'] && $_PUT['user_id'])
+    if(isset($_PUT['block']) && isset($_PUT['admin_id']) && isset($_PUT['user_id']) && isset($_PUT['checked']))
     {
         if($user_model->checkUserType($_PUT['admin_id'])){
             $user_model->block = $_PUT['block'];
             $user_model->user_id = $_PUT['user_id'];
+            $user_model->checked = $_PUT['checked'];
             if ($user_model->BlockUser()){
                 $feedback['code'] = 200;
                 $feedback['message'] = "user ".$_PUT['user_id']." blocked successfully";
 
-            }else{
+            }
+            else{
                 $feedback['code'] = 400;
                 $feedback['message'] = "failed to block user ".$_PUT['User_id'];
             }
+            if ($user_model->checkUserReports()){
+                $feedback['code'] = 200;
+                $feedback['message'] = "user ".$_PUT['user_id']." blocked successfullyu";
+
+            }
         }
-     else{
+    
+        else{
             $feedback['code'] = 400;
             $feedback['message'] = "user is not admin".$_PUT['User_id'];
         }
@@ -77,8 +85,10 @@ else if(isset($_GET)){
         echo  json_encode (  $user_model->  getUser($_GET['user_id'])  ) ;
     }
     else if (isset($_GET['email'])){
-        echo  json_encode (  $user_model->  getUserIdByEmail($_GET['email'])  ) ;
-
+        echo  json_encode (  $user_model->  getUserIdByEmail($_GET['email'])  ) ;       
+    }
+    else if (isset($_GET['block'])){
+        echo  json_encode (  $user_model->  getUsersByBlock($_GET['block'])  ) ;       
     }
     else {      
         echo json_encode ($user_model->getUsers());

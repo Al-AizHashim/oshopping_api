@@ -3,7 +3,6 @@ include('../model/product.php');
 $product_model=new Product();
 
 
-
  if(isset($_POST)&&!empty($_POST)){
      $product_model->product_name = $_POST['product_name'];
      $product_model->product_price_RY= $_POST['yrial_price'];
@@ -27,14 +26,14 @@ $product_model=new Product();
     echo json_encode ($feedback);
 }
 
-
 else if($_SERVER['REQUEST_METHOD']=="PUT"){
     $_PUT= array();
     parse_str(file_get_contents('php://input'), $_PUT);
-    if(isset($_PUT['hide']) && $_PUT['product_id'] && $_PUT['user_id'])
+    if(isset($_PUT['hide']) && isset($_PUT['product_id']) && isset($_PUT['user_id']) && isset($_PUT['checked']) )
     {
     if($product_model->checkUserType($_PUT['user_id'])){
         $product_model->hide = $_PUT['hide'];
+        $product_model->checked = $_PUT['checked'];
         $product_model->product_id = $_PUT['product_id'];
         if ($product_model->hideProduct()){
             $feedback['code'] = 200;
@@ -43,7 +42,10 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
             $feedback['code'] = 400;
             $feedback['message'] = "failed to hide user ".$_PUT['product_id'];
         }
-        
+        if ($product_model->checkProductReports()){
+            $feedback['code'] = 200;
+            $feedback['message'] = "user ".$_PUT['user_id']." checked successfullyu";
+        }
     }else{
         $feedback['code'] = 400;
         $feedback['message'] = "failed user is not admin";
@@ -116,6 +118,8 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
         else
         echo json_encode ($product_model->getProducts());
         }
+
+        
     else {
 
         echo json_encode ($product_model->getProducts());

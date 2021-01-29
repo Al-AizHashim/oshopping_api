@@ -125,7 +125,7 @@ class Product {
     function getProductByVendor($vendor_id)
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from product where vendor_id=?");
+        $statement= $pdo->prepare("select * from product where vendor_id=?  ORDER BY product_date DESC");
         $statement->execute([$vendor_id]);
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;

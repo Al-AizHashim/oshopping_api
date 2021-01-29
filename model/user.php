@@ -36,21 +36,20 @@ class User {
     }
 
 
-    function updateRow()
+   function updateRow()
     {
         try {
             $pdo= $this->database->connect();
-            $sql = "update user set first_name=?,last_name=?, phone_number=? , details=?, address=? , image=?
+            $sql = "update user set first_name=?,last_name=?, phone_number=? , details=?, address=? 
              WHERE user_id=?";
             $statement= $pdo->prepare($sql);
             $statement->execute([$this->first_name, $this->last_name, $this->phone_number,
-             $this->details,$this->address,$this->image,$this->user_id]);
+             $this->details,$this->address,$this->user_id]);
             return true;
         } catch (PDOException $ex) {
             return false;
         }
-
-    }
+   }
     function getUserIdByEmail($email)
     {
         $pdo= $this->database->connect();

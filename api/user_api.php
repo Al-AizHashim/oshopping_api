@@ -62,7 +62,7 @@ else if($_SERVER['REQUEST_METHOD']=="PUT"){
         $user_model->last_name= $_PUT['last_name'];
         $user_model->phone_number= $_PUT['phone_number'];
         $user_model->address= $_PUT['address'];
-        $user_model->image=$_PUT['image'];
+        //$user_model->image=$_PUT['image'];
         $user_model->details= $_PUT['details'];
 
         if ($user_model->updateRow()){

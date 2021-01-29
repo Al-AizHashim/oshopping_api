@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2021 at 02:59 PM
+-- Generation Time: Jan 30, 2021 at 12:01 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -98,7 +98,9 @@ INSERT INTO `cart` (`cart_id`, `fk_product_id`, `fk_user_id`, `cart_statuse`, `p
 (37, 18, 37, 0, 'sofa', 13000, 200, 1, 2, 'lither sofa made in Japan', 'uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:', '2021-01-27 10:23:46', 1, 0, 'Grey'),
 (38, 18, 37, 0, 'sofa', 13000, 200, 1, 2, 'lither sofa made in Japan', 'uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:', '2021-01-27 10:23:54', 1, 0, 'Grey'),
 (41, 18, 1, 0, 'sofa', 13000, 200, 1, 2, 'lither sofa made in Japan', 'uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:', '2021-01-27 23:23:06', 1, 0, 'Grey'),
-(43, 9, 2, 0, 'Modern bed', 25000, 300, 37, 1, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/bedroom1.jpg:uploads/bedroom2.jpg:uploads/bedroom3.jpg:uploads/bedroom4.jpg:', '2021-01-28 12:35:27', 1, 0, 'black');
+(43, 9, 2, 0, 'Modern bed', 25000, 300, 37, 1, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/bedroom1.jpg:uploads/bedroom2.jpg:uploads/bedroom3.jpg:uploads/bedroom4.jpg:', '2021-01-28 12:35:27', 1, 0, 'black'),
+(44, 22, 2, 0, 'carpet', 44, 22, 1, 1, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/600d5a3c7bc2f.jpg:uploads/600d5a3c9112b.jpg:uploads/600d5a3c9af2b.jpg:uploads/600d5a3c9b057.jpg:uploads/600d5a3ca0dd1.jpeg:uploads/600d5a3ca0ce3.jpg:uploads/600d5a3ca0de1.jpg:uploads/600d5a3ca4c77.jpg:', '2021-01-28 15:24:25', 1, 4455, 'White'),
+(45, 9, 2, 0, 'Modern bed', 25000, 300, 37, 1, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/bedroom1.jpg:uploads/bedroom2.jpg:uploads/bedroom3.jpg:uploads/bedroom4.jpg:', '2021-01-28 19:37:02', 1, 0, 'black');
 
 -- --------------------------------------------------------
 
@@ -117,10 +119,12 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`cat_id`, `cat_name`, `category_image`) VALUES
-(1, 'bed', 'uploads/600f13e054f16.jpg'),
-(2, 'Sofas', 'uploads/600f13e054f16.jpg'),
-(3, 'chairs', 'uploads/600e0ddeec26a.jpeg'),
-(22, 'coffee tables', 'uploads/600f13e054f16.jpg');
+(1, 'Bed', 'uploads/600f13e054f16.jpg'),
+(2, 'Sofa', 'uploads/600f13e054f16.jpg'),
+(3, 'chair', 'uploads/600e0ddeec26a.jpeg'),
+(23, 'Table', 'uploads/600f13e054f16.jpg'),
+(24, 'Rug', 'uploads/601462fd8b66a.jpg'),
+(25, 'Pillow', 'uploads/6014639ed8096.jpg');
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,7 @@ CREATE TABLE `product` (
   `product_quantity` int(5) NOT NULL,
   `product_discount` int(3) DEFAULT NULL,
   `color` text DEFAULT 'black',
-  `hide` tinyint(1) DEFAULT 0
+  `hide` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -149,21 +153,28 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `yrial_price`, `dollar_price`, `vendor_id`, `cat_id`, `product_details`, `product_img`, `product_date`, `product_quantity`, `product_discount`, `color`, `hide`) VALUES
-(1, 'chair', 4000, 40, 2, 1, 'details', 'uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:', '2021-01-07 19:55:31', 6, 20, 'black', 0),
+(1, 'rug', 4000, 40, 2, 24, 'details', 'uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:', '2021-01-07 19:55:31', 6, 20, 'black', 1),
 (2, 'modern chair', 33, 22, 21, 3, 'details', 'uploads/6007fc8c131b0.jpg', '2021-01-17 17:18:29', 22, 33, 'black', 0),
 (9, 'Modern bed', 25000, 300, 37, 1, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/bedroom1.jpg:uploads/bedroom2.jpg:uploads/bedroom3.jpg:uploads/bedroom4.jpg:', '2021-01-20 15:46:29', 3, 0, 'black', 0),
 (11, 'modern bedroom', 20000, 50, 37, 1, 'pro det', 'uploads/600a7a7a373fe.jpg', '2021-01-20 15:04:29', 2, 0, 'black', 0),
-(13, 'Carpet', 2455, 35, 21, 3, 'An Amazon brand - This charming sofa features a streamlined modern look, Mid-century inspired design touches and durable construction that stands up to daily life. Its simplicity coordinates with most décor styles, making it the perfect piece for any living room.', 'uploads/6008519c95c1.jpg', '2021-01-20 15:52:04', 2, 0, 'black', 0),
-(14, 'a updated', 1222, 1, 1, 2, 'An Amazon brand - This charming sofa features a streamlined modern look, Mid-century inspired design touches and durable construction that stands up to daily life. Its simplicity coordinates with most décor styles, making it the perfect piece for any living room.', 'uploads/600a8da4197f6.jpg', '2021-01-21 07:23:20', 0, 22, 'White', 0),
 (15, 'classic room', 1222, 900, 1, 2, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/6008519c95c1111.jpg', '2021-01-21 07:23:44', 5, 22, 'grey', 0),
-(18, 'sofa', 13000, 200, 1, 2, 'lither sofa made in Japan', 'uploads/600a8da4197f6.jpg:uploads/600a8da41d10d.jpg:uploads/600a8da429bd0.jpg:uploads/600a8da42c5d0.jpg:', '2021-01-21 19:18:19', 2, 0, 'Grey', 0),
-(19, 'living room carpet', 1, 1, 1, 1, 'An Amazon brand - This charming sofa features a streamlined modern look, Mid-century inspired design touches and durable construction that stands up to daily life. Its simplicity coordinates with most décor styles, making it the perfect piece for any living room.', 'uploads/6009d459830a6.jpg', '2021-01-21 19:22:11', 1, 1, 'Grey', 0),
+(18, 'sofa', 313000, 600, 1, 2, 'If style is the question, then the Altari sofa sleeper is the answer. Sporting clean lines and sleek track arms, the decidedly contemporary profile is enhanced with plump cushioning and a chenille-feel upholstery, so pleasing to the touch. Sure to play well with so many color schemes, this sofa sleeper in slate gray includes a pair of understated floral pattern pillows for fashionably fresh appeal. Pull-out queen mattress in quality memory foam comfortably accommodates overnight guests.', 'uploads/60144b1a45291.jpg:uploads/60144b1a4d835.jpg:uploads/60144b1a56aed.jpg:uploads/60144b1a5aa7a.jpg:uploads/60144b1a60732.jpg:uploads/60144b1a3a234.jpg:uploads/60144b1a3f7d6.jpg:', '2021-01-21 19:18:19', 2, 0, 'Grey', 0),
 (20, 'new sofa', 62000, 100, 37, 2, 'An Amazon brand - This charming sofa features a streamlined modern look, Mid-century inspired design touches and durable construction that stands up to daily life. Its simplicity coordinates with most décor styles, making it the perfect piece for any living room.', 'uploads/sofa1.jpg:uploads/sofa2.jpg:uploads/sofa3.jpg:uploads/sofa4.jpg:', '2021-01-22 08:32:48', 1, 0, 'Grey', 1),
-(21, 'new carpet', 120000, 200, 1, 1, 'carpet details', 'uploads/600d2895b430f.jpg:uploads/600d2895c2263.jpg:uploads/600d2895d68b4.jpg:uploads/600d2895d696b.jpg:', '2021-01-24 07:59:27', 2, 0, 'Black', 0),
 (22, 'carpet', 44, 22, 1, 1, 'Called \"the bed of the future\", The Executive Smart Bed is your fully-loaded high-end lounge & bedroom solution. It\'s packed with ultra-modern features & accessories for convenient leisure, including an electronic massage chair, hidden steel lockbox safe, Bluetooth speaker & power ports, adjustable headboards & reading lights, extractable computer desk, and multiple built-in storage compartments. Our beds are made from sustainably sourced premium material and designed for maximum comfort. With microfiber leather, high-density sponge, and a solid pinewood frame, each bed is uniquely built and custom constructed to provide a look & feel like no other. The Executive Smart Bed has a \"distinguished design\". Built for home beauty, our beds provide a modern look paired with classic elements, creating an elegant & refined bedroom aesthetic. It\'s perfect for comfortable laptop working, daytime lounging, and of course your nighttime slumber.', 'uploads/600d5a3c7bc2f.jpg:uploads/600d5a3c9112b.jpg:uploads/600d5a3c9af2b.jpg:uploads/600d5a3c9b057.jpg:uploads/600d5a3ca0dd1.jpeg:uploads/600d5a3ca0ce3.jpg:uploads/600d5a3ca0de1.jpg:uploads/600d5a3ca4c77.jpg:', '2021-01-24 11:30:20', 1, 4455, 'White', 0),
-(24, 'new product', 60000, 100, 35, 4, 'product details', 'uploads/600feba22e565.jpg:uploads/600feba24448e.jpg:uploads/600feba245734.jpg:uploads/600feba246d57.jpg:', '2021-01-26 10:15:03', 2, 0, '', NULL),
-(25, 'new sofa2', 62000, 100, 37, 2, 'An Amazon brand - This charming sofa features a streamlined modern look, Mid-century inspired design touches and durable construction that stands up to daily life. Its simplicity coordinates with most décor styles, making it the perfect piece for any living room.', 'uploads/sofa1.jpg:uploads/sofa2.jpg:uploads/sofa3.jpg:uploads/sofa4.jpg:', '2021-01-22 08:32:48', 1, 0, 'Grey', 1),
-(26, 'new sofa3', 62000, 100, 37, 2, 'An Amazon brand - This charming sofa features a streamlined modern look, Mid-century inspired design touches and durable construction that stands up to daily life. Its simplicity coordinates with most décor styles, making it the perfect piece for any living room.', 'uploads/sofa1.jpg:uploads/sofa2.jpg:uploads/sofa3.jpg:uploads/sofa4.jpg:', '2021-01-22 08:32:48', 1, 0, 'Grey', 1);
+(27, 'Dining  Table', 350000, 584.99, 1, 23, 'Cheers to the Chadoni dining room extension table for serving up high-end design, minus the attitude. The look might be might be ultra sleek and contemporary, but with an easy-on-the eyes “smoky” finish, it exudes a casually cool vibe that feels at home.\nMade of veneers, wood and engineered wood\nSeparate extension leaf\nTable extends by pulling both ends and dropping in leaf\nSeats up to 8\nAssembly required\nDining chairs sold separately\nEstimated Assembly Time: 30 Minutes', 'uploads/6013df7235cb6.jpg:uploads/6013df723a53b.jpg:uploads/6013df7248a79.jpg:uploads/6013df7247d05.jpg:uploads/6013df7259f86.jpg:uploads/6013df725f0f3.jpg:', '2021-01-29 10:15:42', 5, 0, 'Grey', 0),
+(28, 'Sofa Sleeper', 484000, 807.49, 1, 2, 'If style is the question, then the Altari sofa sleeper is the answer. Sporting clean lines and sleek track arms, the decidedly contemporary profile is enhanced with plump cushioning and a chenille-feel upholstery, so pleasing to the touch. Sure to play well with so many color schemes, this sofa sleeper in slate gray includes a pair of understated floral pattern pillows for fashionably fresh appeal. Pull-out queen mattress in quality memory foam comfortably accommodates overnight guests.', 'uploads/60144b1a4d835.jpg:uploads/60144b1a56aed.jpg:uploads/60144b1a5aa7a.jpg:uploads/60144b1a60732.jpg:uploads/60144b1a3a234.jpg:uploads/60144b1a3f7d6.jpg:uploads/60144b1a45291.jpg:', '2021-01-29 17:51:35', 4, 0, 'Black', 0),
+(29, 'Upholstered Bed', 161000, 269.99, 1, 1, 'Foundation/box spring required, sold separately\nMattress available, sold separately\nAssembly required\nEstimated Assembly Time: 60 Minutes', 'uploads/60145785d15d1.jpg:uploads/60145785db327.jpg:uploads/60145785e40da.jpg:uploads/60145785f2079.jpg:uploads/6014578600e61.jpg:uploads/6014578601cf1.jpg:', '2021-01-29 18:44:28', 3, 0, 'Grey', 0),
+(30, 'Surya Rug', 76200, 127, 1, 24, 'Simply timeless and beautifully on trend, this masterfully crafted Moroccan style area rug is dressed to impress. Easy elegant and casually cool, it looks right at home whether your furnishings are classic or contemporary.', 'uploads/601464ad72d75.jpg:uploads/601464ad788fe.jpg:uploads/601464ad7a9be.jpg:uploads/601464ad824b0.jpg:uploads/601464ad87a29.jpg:uploads/601464ad91f07.jpg:', '2021-01-29 19:40:32', 3, 0, 'Grey', 0),
+(31, 'TV Stand', 40700, 679.99, 1, 23, 'Bathed in a rich, dark and wonderfully “weathered” finish, the Noorbrook TV stand captures that rustic cottage feel, but with clean-lined refinement. For added viewing pleasure: the electric infrared fireplace insert (sold separately) brings the cozy feeling of a fireplace without the work or worry. Just the thing for the perfect night in.', 'uploads/60146587c262d.jpg:uploads/60146587c814f.jpg:uploads/60146587ce4cb.jpg:uploads/60146587d290a.jpg:uploads/60146587d64c3.jpg:uploads/60146587d9b95.jpg:uploads/60146587e21c3.jpg:', '2021-01-29 19:44:11', 3, 0, 'Black', 0),
+(32, 'Liviah Pillow', 20000, 34, 1, 25, 'A natural treat for the eyes and the hands. The Liviah throw pillow brings a global appeal to your home. Diamond design in neutral tones is abounding with various textures. Perfect for the bohemian abode.', 'uploads/601467ae9b7bb.jpg:uploads/601467aea1e97.jpg:uploads/601467aea6e71.jpg:', '2021-01-29 19:53:19', 10, 0, 'White', 0),
+(33, 'Sofa Sleeper', 713400, 1189, 1, 2, 'Dramatically transform your living space with the rustic look of weathered leather you love—at a fraction of the cost. That’s the beauty of the Larkinhurst faux leather sofa sleeper. Washed in earthy Southwestern tones, with generous back and seating support and jumbo window-pane stitching, it envelops you in comfort and quality. Classic elements such as roll arms and turned feet bring in just enough traditional touch, while an easy-glide pull-out queen mattress makes for modern convenience.', 'uploads/601468d8f12ea.jpg:uploads/601468d8e0a8f.jpg:uploads/601468d8ef68f.jpg:uploads/601468d8ef30f.jpg:', '2021-01-29 19:58:18', 4, 0, '', 0),
+(34, 'Queen  Bed', 356000, 594, 1, 1, 'Coralayne queen upholstered bed allures with the glitz and glam befitting silver screen queens. Textured gray vinyl upholstery channels that upscale flair you\'ve been dreaming of. Generously scaled headboard with crystalline buttons will have you feeling sheltered in comfort and luxury. Mattress and foundation/box spring available, sold separately', 'uploads/6014709cccd04.jpg:uploads/6014709cd3f8f.jpg:uploads/6014709ce576c.jpg:uploads/6014709ce9cfa.jpg:uploads/6014709d00c51.jpg:uploads/6014709d0fe27.jpg:', '2021-01-29 20:31:27', 5, 0, 'Grey', 0),
+(35, 'Outdoor Table', 1308600, 2181, 1, 23, 'Turn your backyard space into your own piece of paradise with the Paradise Trail 7-piece outdoor fire pit table set. Though this outdoor table looks remarkably like wood, it’s made of sturdy, rust-proof aluminum that’s perfectly suited for al fresco living. Enhancing the rustically refined aesthetic: all-weather, handwoven resin wicker. The result may look high maintenance, but rest assured, this outdoor fire pit table set is anything but. With the press of a button, ignite a flickering flame that dances over a bed of glass beads. And with six high-style bar stools, it’s one highly accommodating outdoor bar table set.', 'uploads/60147180732b3.jpg:uploads/6014718082a7d.jpg:uploads/6014718086034.jpg:uploads/601471808c99c.jpg:uploads/6014718095f01.jpg:uploads/6014718097ebc.jpg:uploads/601471809de82.jpg:uploads/60147180a1395.jpg:uploads/60147180a8870.jpg:uploads/60147180b17fb.jpg:', '2021-01-29 20:35:14', 9, 0, 'Grey', 0),
+(36, 'Tv Stand', 300000, 499, 1, 23, 'A brilliant rendition of modern farmhouse style (sliding barn doors and all), the Carynhurst TV stand is right in tune with your richly relaxed sense of style. The TV stand’s clean yet hearty profile is enhanced with a complex whitewash finish with charming distressing and plank-effect styling. Antiqued gray metal hardware is a sophisticated complement.', 'uploads/6014734ca8b87.jpg:uploads/6014734c91192.jpg:uploads/6014734c9e10b.jpg:uploads/6014734ca4ab3.jpg:uploads/6014734cb09a4.jpg:uploads/6014734cb5101.jpg:', '2021-01-29 20:42:54', 5, 0, 'White', 0),
+(37, 'Grey Chair', 230000, 424, 1, 3, 'If style is the question, then the Altari chair is the answer. Its decidedly contemporary profile is enhanced with plump cushioning and a chenille-feel upholstery, so pleasing to the touch. Rest assured, this chair in slate gray is sure to play well with so many color schemes.', 'uploads/60147430860cc.jpg:uploads/6014743098490.jpg:uploads/6014743099969.jpg:uploads/601474309acc4.jpg:uploads/601474309ffa2.jpg:', '2021-01-29 20:46:41', 4, 0, 'Grey', 0),
+(38, 'Grey Table', 320000, 514, 1, 23, 'Cheers to the Chadoni dining room extension table for serving up high-end design, minus the attitude. The look might be might be ultra sleek and contemporary, but with an easy-on-the eyes “smoky” finish, it exudes a casually cool vibe that feels at home.\r\nMade of veneers, wood and engineered wood\r\nSeparate extension leaf\r\nTable extends by pulling both ends and dropping in leaf\r\nSeats up to 8\r\nAssembly required\r\nDining chairs sold separately\r\nEstimated Assembly Time: 30 Minutes', 'uploads/6013df7248a79.jpg:uploads/6013df7247d05.jpg:uploads/6013df723a53b.jpg:uploads/6013df7235cb6.jpg:uploads/6013df7259f86.jpg:uploads/6013df725f0f3.jpg:', '2021-01-29 10:15:42', 5, 0, 'Grey', 0),
+(39, 'Tv Table', 240000, 399, 1, 23, 'A brilliant rendition of modern farmhouse style (sliding barn doors and all), the Carynhurst TV stand is right in tune with your richly relaxed sense of style. The TV stand’s clean yet hearty profile is enhanced with a complex whitewash finish with charming distressing and plank-effect styling. Antiqued gray metal hardware is a sophisticated complement.', 'uploads/6014734ca4ab3.jpg:uploads/6014734ca8b87.jpg:uploads/6014734c91192.jpg:uploads/6014734c9e10b.jpg:uploads/6014734cb09a4.jpg:uploads/6014734cb5101.jpg:', '2021-01-29 20:42:54', 5, 0, 'Grey', 0),
+(40, 'Rug', 70000, 110, 1, 24, 'Simply timeless and beautifully on trend, this masterfully crafted Moroccan style area rug is dressed to impress. Easy elegant and casually cool, it looks right at home whether your furnishings are classic or contemporary.', 'uploads/601464ad824b0.jpg:uploads/601464ad87a29.jpg:uploads/601464ad91f07.jpg:uploads/601464ad72d75.jpg:uploads/601464ad788fe.jpg:uploads/601464ad7a9be.jpg:', '2021-01-29 19:40:32', 3, 0, 'White', 0);
 
 -- --------------------------------------------------------
 
@@ -204,14 +215,14 @@ CREATE TABLE `product_report_details` (
 --
 
 INSERT INTO `product_report_details` (`product_r_d_id`, `product_id`, `product_r_id`, `sender_id`, `created_at`, `checked`) VALUES
-(7, 1, 1, 1, '2021-01-28 13:33:03', 0),
-(8, 1, 1, 1, '2021-01-28 13:33:03', 0),
-(9, 1, 1, 1, '2021-01-28 13:33:03', 0),
-(10, 1, 2, 1, '2021-01-28 13:33:03', 0),
-(11, 1, 2, 1, '2021-01-28 13:33:03', 0),
-(12, 1, 1, 30, '2021-01-28 13:33:03', 0),
+(7, 1, 1, 1, '2021-01-28 22:28:05', 0),
+(8, 1, 1, 1, '2021-01-28 22:28:05', 0),
+(9, 1, 1, 1, '2021-01-28 22:28:05', 0),
+(10, 1, 2, 1, '2021-01-28 22:28:05', 0),
+(11, 1, 2, 1, '2021-01-28 22:28:05', 0),
+(12, 1, 1, 30, '2021-01-28 22:28:05', 0),
 (13, 2, 1, 15, '2021-01-25 05:13:31', 0),
-(14, 20, 1, 23, '2021-01-25 16:31:19', 0);
+(14, 20, 1, 23, '2021-01-28 22:59:26', 0);
 
 -- --------------------------------------------------------
 
@@ -239,7 +250,9 @@ INSERT INTO `rating` (`rating_id`, `product_id`, `user_id`, `rating`) VALUES
 (11, 20, 7, 4),
 (12, 9, 7, 4),
 (13, 15, 35, 4),
-(14, 20, 2, 4);
+(14, 20, 2, 4),
+(15, 22, 2, 4),
+(16, 9, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -259,7 +272,7 @@ CREATE TABLE `report` (
 INSERT INTO `report` (`report_id`, `report_name`) VALUES
 (1, 'Late deliver'),
 (2, 'Not Healthy'),
-(3, 'Fake product');
+(4, 'Fake product');
 
 -- --------------------------------------------------------
 
@@ -325,11 +338,11 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `email`, `phone_number`, `details`, `address`, `vendor`, `block`, `admin`, `image`, `created_at`, `firebase_user_id`, `firebase_user_name`) VALUES
 (1, 'alaiz ', 'Hashim', 'alaiz.hashim@gmail.com', '+967775301780', 'details of alaiz', '', 0, 0, 0, '600dc73f55221.jpg', '2021-01-07 23:13:40', '5tcYjENPd6TcWIUqkwKZiefmIEo1', 'Alaiz Hashim'),
 (2, 'admin ', 'admin', 'yemenoshopping@gmail.com', '+967775301780', 'admin of the application', '', 0, 0, 1, '', '2021-01-12 10:13:53', NULL, NULL),
-(3, 'Ahmid ', 'Ali', 'alaiz.hashim', '123', 'my detailss', 'my addresss', 0, 1, 0, 'default image link', '2021-01-19 22:11:16', NULL, NULL),
+(3, 'Ahmid ', 'Ali', 'alaiz.hashim', '123', 'my detailss', 'my addresss', 0, 0, 0, 'default image link', '2021-01-19 22:11:16', NULL, NULL),
 (33, 'guist', '3', 'aaab@gmail.com', '+96777119920', 'supplyer', 'Santa\'s', 0, 0, 0, 'uploads/600a21c3c3c20.jpg', '2021-01-24 02:15:30', NULL, NULL),
 (34, 'alaiz', 'alaiz', 'alaiz@gmail.com', '771133133', 'supplier', 'Sanaa', 0, 0, 0, 'uploads/600f5e6a1fdea.jpeg', '2021-01-26 00:13:51', NULL, NULL),
 (35, 'Nora', 'Saeed', 'abcabc123@gmail.com', '+967775301780', 'student', 'Ibb', 0, 0, 0, 'uploads/600fe539110e6.jpg', '2021-01-26 09:45:00', 'o2UJtkfOqaSHeeqEDZZZ4hT1VJQ2', 'n'),
-(37, 'Amal', 'Qassem', 'guist6@gmail.com', '222222', 'furneture supplier', 'Aden, Alshikh Othman', 0, 0, 0, 'uploads/600fe539110e6.jpg', '2021-01-26 22:45:24', 'r5WF5oIHHzQqqac8I5ho584CMqe2', 'guist6');
+(37, 'Amal', 'Qassem', 'guist6@gmail.com', '222222', 'furneture supplier', 'Aden, Alshikh Othman', 0, 1, 0, 'uploads/600fe539110e6.jpg', '2021-01-26 22:45:24', 'r5WF5oIHHzQqqac8I5ho584CMqe2', 'guist6');
 
 --
 -- Indexes for dumped tables
@@ -423,19 +436,19 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cart_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `cat_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `product_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `product_report`
@@ -453,13 +466,13 @@ ALTER TABLE `product_report_details`
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `report_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `report_details`

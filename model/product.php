@@ -27,7 +27,7 @@ class Product {
 
         try {
             $pdo= $this->database->connect();
-            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?,null)');
+            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?,0)');
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image
             ,$this->product_quantity,$this->product_discount,$this->color]);

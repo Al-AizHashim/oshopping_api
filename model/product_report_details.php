@@ -17,7 +17,7 @@ class Product_report_details {
     {
         try {
             $pdo= $this->database->connect();
-            $statement= $pdo->prepare('insert into product_report_details values(null,?,?,?,null)');
+            $statement= $pdo->prepare('INSERT INTO `product_report_details`( `product_id`, `product_r_id`, `sender_id`) VALUES (?,?,?)');
             $statement->execute([$this->product_id,$this->product_r_id,$this->sender_id]);
             return true;
         } catch (PDOException $ex) {
@@ -25,7 +25,6 @@ class Product_report_details {
         }
 
     }
-
 
     function getProductReportsDetails()
     {

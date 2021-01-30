@@ -13,7 +13,10 @@ class User {
     public $admin;
     public $image;
     public$created_at;
+    public $firebase_user_id;
+    public$firebase_user_name;
     public $database;
+    public $checked;
 
     function __construct()
     {
@@ -26,9 +29,9 @@ class User {
         try {
             $pdo= $this->database->connect();
             $statement= $pdo->prepare("INSERT INTO `user`( `first_name`, `last_name`, `email`, `phone_number`,
-             `details`, `address`,`image`) VALUES (?,?,?,?,?,?,?)");
+             `details`, `address`,`image`,`firebase_user_id`, `firebase_user_name`) VALUES (?,?,?,?,?,?,?,?,?)");
             $statement->execute([  $this->first_name,$this->last_name,$this->email, $this->phone_number,$this->details,
-            $this->address,$this->image]);
+            $this->address,$this->image,$this->firebase_user_id, $this->firebase_user_name]);
             return true;
         } catch (PDOException $ex) {
             return false;
@@ -36,21 +39,20 @@ class User {
     }
 
 
-    function updateRow()
+   function updateRow()
     {
         try {
             $pdo= $this->database->connect();
-            $sql = "update user set first_name=?,last_name=?, phone_number=? , details=?, address=? , image=?
+            $sql = "update user set first_name=?,last_name=?, phone_number=? , details=?, address=? 
              WHERE user_id=?";
             $statement= $pdo->prepare($sql);
             $statement->execute([$this->first_name, $this->last_name, $this->phone_number,
-             $this->details,$this->address,$this->image,$this->user_id]);
+             $this->details,$this->address,$this->user_id]);
             return true;
         } catch (PDOException $ex) {
             return false;
         }
-
-    }
+   }
     function getUserIdByEmail($email)
     {
         $pdo= $this->database->connect();
@@ -74,10 +76,22 @@ class User {
         }
     }
 
+    function checkUserReports(){
+        try {
+            $pdo= $this->database->connect();
+            $sql = "update report_details set checked=? WHERE against=?";
+            $statement= $pdo->prepare($sql);
+            $statement->execute([$this->checked,$this->user_id]);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+
     function getUsers()
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from user");
+        $statement= $pdo->prepare("select * from user WHERE block != 1");
         $statement->execute();
         $rows= (object) array("ListOfUsers"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;
@@ -90,6 +104,15 @@ class User {
         $statement->execute([$id]);
         $row= array("user"=> $statement->  fetch( PDO::FETCH_OBJ)) ;
         return $row  ;
+    }
+
+    function getUsersByBlock($block)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from user where block=?");
+        $statement->execute([$block]);
+        $rows= (object) array("ListOfUsers"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows;
     }
 
     function checkUserType($id)
@@ -106,9 +129,4 @@ class User {
 
 }
 
-
 ?>
-
-
-
-

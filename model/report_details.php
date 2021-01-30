@@ -6,17 +6,22 @@ clASs Report_details {
     public $sender;
     public $against;
     public $created_at;
+    public $block;
+    public $checked;
+    
 
     function __construct()
     {
-        $this->databASe = new DBConfig();
+        $this->database = new DBConfig();
     }
 
     function addReportDetials()
     {
         try {
             $pdo= $this->database->connect();
+
             $statement= $pdo->prepare('INSERT INTO `report_details`( `report_id`, `sender`, `against`) VALUES (?,?,?)');
+
             $statement->execute([$this->report_id,$this->sender,$this->against]);
             return true;
         } catch (PDOException $ex) {
@@ -26,26 +31,26 @@ clASs Report_details {
 
 
     function getReportsDetails()
-    {
-        $pdo= $this->databASe->connect();
+    { 
+        $pdo= $this->database->connect();
         $statement= $pdo->prepare("SELECT report_details.against,
             IFNULL(COUNT(report_details.report_D_id),0) AS  number_of_reports,
             CONCAT(against.first_name,' ',against.lASt_name) AS report_against
-            FROM report
-            INNER JOIN report_details
-            ON report.report_id = report_details.report_id
+            FROM report_details
             INNER JOIN user against
             ON report_details.against = against.user_id
+            WHERE against.block = ?
+            AND report_details.checked =?
             GROUP BY report_details.against
             ORDER BY number_of_reports DESC ");
-        $statement->execute();
-        $rows= (object) array("ListOfReportsDetails"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        $statement->execute([$this->block, $this->checked]);
+         $rows= (object) array("ListOfReportsDetails"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;
     }
 
     function getReportDetails($id)
     {
-        $pdo= $this->databASe->connect();
+        $pdo= $this->database->connect();
         $statement= $pdo->prepare("SELECT report.report_name report_type,
             CONCAT(sender.first_name,' ',sender.lASt_name) AS sender_name,
             CONCAT(against.first_name,' ',against.lASt_name) AS against,

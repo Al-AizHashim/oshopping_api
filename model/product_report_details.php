@@ -6,6 +6,7 @@ class Product_report_details {
     public $product_id;
     public $sender_id;
     public $created_at;
+    public $hide;
 
     function __construct()
     {
@@ -35,9 +36,11 @@ class Product_report_details {
         ON product.vendor_id = vendor.user_id 
         INNER JOIN product_report_details 
         ON product.product_id = product_report_details.product_id 
+        WHERE product.hide = ?
+        AND product_report_details.checked =?
         GROUP BY product.product_id,product.product_name  
         ORDER BY number_of_reports DESC");
-        $statement->execute();
+        $statement->execute([$this->hide, $this->checked]);
         $rows= (object) array("ListOfReportsDetails"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;
     }

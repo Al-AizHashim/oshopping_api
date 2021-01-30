@@ -15,8 +15,8 @@ clASs Report_details {
     function addReportDetials()
     {
         try {
-            $pdo= $this->databASe->connect();
-            $statement= $pdo->prepare('insert into report_details values(null,?,?,?,null)');
+            $pdo= $this->database->connect();
+            $statement= $pdo->prepare('INSERT INTO `report_details`( `report_id`, `sender`, `against`) VALUES (?,?,?)');
             $statement->execute([$this->report_id,$this->sender,$this->against]);
             return true;
         } catch (PDOException $ex) {

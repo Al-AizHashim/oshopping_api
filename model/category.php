@@ -29,7 +29,7 @@ class Category {
     function getCategories()
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from category");
+        $statement= $pdo->prepare("select * from category  ORDER BY cat_id DESC");
         $statement->execute();
         $rows= (object) array("ListOfCategories"=>$statement->fetchAll(PDO::FETCH_ASSOC));
 

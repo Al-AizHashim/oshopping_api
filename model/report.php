@@ -28,7 +28,7 @@ class Report {
     function getReports()
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from report");
+        $statement= $pdo->prepare("select * from report  ORDER BY report_id DESC");
         $statement->execute();
         $rows= (object) array("ListOfReports"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;

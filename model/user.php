@@ -91,7 +91,7 @@ class User {
     function getUsers()
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from user WHERE block != 1");
+        $statement= $pdo->prepare("select * from user WHERE block != 1  ORDER BY user_id DESC");
         $statement->execute();
         $rows= (object) array("ListOfUsers"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows;

@@ -31,7 +31,7 @@ function getRows(){
 	$pdo=$this->database->connect();
     
     
-   $statement= $pdo->prepare("select * from cart ");
+   $statement= $pdo->prepare("select * from cart ORDER BY cart_id DESC");
     
     $statement->execute();
     

@@ -23,7 +23,8 @@ class Activity{
         FROM activity
         INNER JOIN product
           ON activity.fk_product_id = product.product_id
-          AND activity.fk_user_id=?");
+          AND activity.fk_user_id=?
+          ORDER BY activity_id DESC");
         $statement->execute([$uId]);
         $rows= (object) array("ListOfActivities"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;

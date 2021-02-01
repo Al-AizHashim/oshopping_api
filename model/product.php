@@ -27,7 +27,7 @@ class Product {
 
         try {
             $pdo= $this->database->connect();
-            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?,0)');
+            $statement= $pdo->prepare('insert into product values(null,?,?,?,?,?,?,?,null,?,?,?,null)');
             $statement->execute([$this->product_name,$this->product_price_RY,$this->product_price_D,
             $this->vendor_id,$this->cart_id,$this->product_details,$this->product_image
             ,$this->product_quantity,$this->product_discount,$this->color]);
@@ -117,7 +117,7 @@ class Product {
     function getProductByCategory($cat_id)
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from product where cat_id=?");
+        $statement= $pdo->prepare("select * from product where cat_id=? AND hide=0");
         $statement->execute([$cat_id]);
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;
@@ -125,15 +125,25 @@ class Product {
     function getProductByVendor($vendor_id)
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from product where vendor_id=?  ORDER BY product_date DESC");
+        $statement= $pdo->prepare("select * from product where vendor_id=? AND hide=0");
         $statement->execute([$vendor_id]);
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;
     }
+
+    function getProductByHide($hide)
+    {
+        $pdo= $this->database->connect();
+        $statement= $pdo->prepare("select * from product where hide=? ");
+        $statement->execute([$hide]);
+        $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
+        return $rows  ;
+    }
+
     function getProductByColor($color)
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from product where color=?");
+        $statement= $pdo->prepare("select * from product where color=? AND hide=0");
         $statement->execute([$color]);
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));
         return $rows  ;
@@ -142,7 +152,7 @@ class Product {
     function searchProduct($query)
     {
         $pdo= $this->database->connect();
-        $statement= $pdo->prepare("select * from product where product_name LIKE ?");
+        $statement= $pdo->prepare("select * from product where product_name LIKE ? AND hide=0");
         $query="%".$query."%" ;
         $statement->execute([$query]);
         $rows= (object) array("ListOfProducts"=>$statement->fetchAll(PDO::FETCH_ASSOC));

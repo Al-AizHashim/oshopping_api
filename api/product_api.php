@@ -111,6 +111,9 @@ else if($_SERVER['REQUEST_METHOD']=="GET"){
     else if (isset($_GET['color'])){
         echo  json_encode (  $product_model->  getProductByColor($_GET['color'])  ) ;
     }
+    else if (isset($_GET['hide'])){
+        echo  json_encode (  $product_model->  getProductByHide($_GET['hide'])  ) ;
+    }
     else if (isset($_GET['user_id'])){
         if($product_model->checkUserType($_GET['user_id'])){
             echo  json_encode (  $product_model->  getProductsAdmin() ) ;
